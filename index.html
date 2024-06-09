@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><span style="color: #ff5733;">FUENTESHOP.EC</span></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; 
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            text-transform: uppercase;
+        }
+        h1 span {
+            color: #ff5733;
+        }
+        p {
+            font-size: 18px;
+            color: #000000;
+            margin-top: 10px;
+        }
+        nav {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            display: block;
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li a {
+            padding: 10px;
+            white-space: nowrap;
+        }
+        .contact-section {
+            display: flex;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 18px;
+            color: #ff5733;
+        }
+        .social-links {
+            display: flex;
+            margin-left: 10px;
+        }
+        .social-links a {
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .social-links img {
+            width: 24px;
+            height: 24px;
+        }
+        .banner {
+            background-image: url('url_a_tu_imagen_de_banner.jpg'); /* Pon aquí la URL de tu imagen de banner */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .banner h2 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .banner p {
+            font-size: 24px;
+            margin: 10px 0 0;
+        }
+        .product {
+             display: inline-block;
+             margin: 10px;
+             text-align: center;
+             background-color: #fff;
+             padding: 10px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .featured-products .product img {
+             width: 200px; /* Establece el ancho máximo */
+             height: 200px; /* Establece el alto máximo */
+             object-fit: cover; /* Ajusta la imagen dentro del tamaño especificado */
+        }
+
+
+        .testimonial {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .testimonial h3 {
+            font-size: 22px;
+            color: #333;
+        }
+        .testimonial p {
+            font-size: 16px;
+            color: #555;
+        }
+        .back-button {
+            background-color: #ff5733;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #e74c3c;
+        }
+        .buy-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .buy-button:hover {
+            background-color: #218838;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span>FUENTESHOP.EC</span></h1>
+        <p><pam style="color: #fff">Descubre nuestra amplia selección de prendas con los mejores precios</pam></p>
+    </header>
+    <nav id="main-nav">
+        <ul>
+            <li><a href="#">Ropa para Niños</a>
+                <ul>
+                    <li><a href="#" onclick="showProducts(kidsShirts)">Camisas</a></li>
+                    <li><a href="#" onclick="showProducts(kidsPants)">Pantalones</a></li>
+                    <li><a href="#" onclick="showProducts(kidsShoes)">Zapatos</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ropa para Niñas</a>
+                <ul>
+                    
+                    <li><a href="#" onclick="showProducts(girlsBlouses)">Blusas</a></li>
+                    <li><a href="#" onclick="showProducts(girlsPants)">Pantalones</a></li>
+                    <li><a href="#" onclick="showProducts(girlsShoes)">Zapatos</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ropa para Hombres</a>
+                <ul>
+                    <li><a href="#" onclick="showProducts(mensShirts)">Camisas</a></li>
+                    <li><a href="#" onclick="showProducts(mensPants)">Pantalones</a></li>
+                    <li><a href="#" onclick="showProducts(mensShoes)">Zapatos</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ropa para Mujeres</a>
+                <ul>
+                    
+                    <li><a href="#" onclick="showProducts(womensBlouses)">Blusas</a></li>
+                    <li><a href="#" onclick="showProducts(womensPants)">Pantalones</a></li>
+                    <li><a href="#" onclick="showProducts(womensShoes)">Zapatos</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="back-button" onclick="backToMenu()">Regresar al Menú</a></li>
+        </ul>
+            </li>
+            
+             
+            <div class="contact-section">
+                <span>CONTÁCTANOS EN:</span>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/payless?mibextid=ZbWKwL" target="_blank">
+                        <img src="flogo.jpg" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/jonathan_antifekas_?igsh=MTV4MXNoNmgzamkyNQ==" target="_blank">
+                        <img src="iglogo.jpg" alt="Instagram">
+                    </a>
+                    <a href="https://wa.me/qr/5J63DFW3QV36G1" target="_blank">
+                        <img src="wlogo.jpg" alt="WhatsApp">
+                    </a>
+                </div>
+            </div>
+    </nav>
+    <section id="products">
+        <!-- Espacio para los productos -->
+    </section>
+    <div class="banner">
+        <h2><span style="color: #ff5733;">¡NUEVAS COLECCIONES!</span></h2>
+        <p><span style="color: #000000;"> LAS ÚLTIMAS TENDENCIAS EN MODA</span></p>
+    </div>
+    <div class="featured-products">
+        <h2>Productos Destacados</h2>
+        <div class="product">
+            <img src="des1.jpg" alt="Producto Destacado 1">
+            <h3>Producto Destacado 1</h3>
+            <p>Precio: $50</p>
+        </div>
+        <div class="product">
+            <img src="des2.jpg" alt="Producto Destacado 2">
+            <h3>Producto Destacado 2</h3> 
+            <p>Precio: $60</p>
+        </div>
+        <div class="product">
+            <img src="des3.jpg" alt="Producto Destacado 3">
+            <h3>Producto Destacado 3</h3>
+            <p>Precio: $40</p>
+        </div>
+        <div class="product">
+            <img src="des6.jpg" alt="Producto Destacado 4">
+            <h3>Producto Destacado 4</h3>
+            <p>Precio: $35</p>
+        </div>
+        <div class="product">
+            <img src="des4.jpg" alt="Producto Destacado 5">
+            <h3>Producto Destacado 5</h3>
+            <p>Precio: $29</p>
+        </div>
+        <div class="product">
+            <img src="des7.jpg" alt="Producto Destacado 6">
+            <h3>Producto Destacado 6</h3>
+            <p>Precio: $12</p>
+        </div>
+        <div class="product">
+            <img src="des5.jpg" alt="Producto Destacado 7">
+            <h3>Producto Destacado 7</h3>
+            <p>Precio: $40</p>
+        </div>
+    </div>
+    <div class="banner">
+        <h2><span style="color: #ff5733;">¡Ofertas Exclusivas!</span></h2>
+        <p>Aprovecha nuestros descuentos por tiempo limitado</p>
+    </div>
+    <div class="testimonial">
+        <h3>Lo que nuestros clientes dicen</h3>
+        <p>"Excelente calidad y precios inmejorables. ¡Definitivamente volveré a comprar!" - Juan Pérez</p>
+    </div>
+    
+    
+    <div id="products" class="featured-products"></div>
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="purchaseForm" method="POST" action="process_purchase.php">
+                <div class="form-group">
+                    <label for="productName">Producto:</label>
+                    <input type="text" id="productName" name="productName" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Nombre:</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email:</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Teléfono:</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Dirección:</label>
+                    <input type="text" id="customerAddress" name="customerAddress" required>
+                </div>
+                <button type="submit" class="buy-button">Comprar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function showProducts(products) {
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = ''; // Limpiar el contenido anterior
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Precio: $${product.price}</p>
+                    <button class="buy-button" onclick="openPurchaseForm('${product.name}')">Comprar</button>
+                `;
+                productsDiv.appendChild(productDiv);
+            });
+        }
+
+        function openPurchaseForm(productName) {
+            document.getElementById('productName').value = productName;
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        // Get the modal
+        const modal = document.getElementById('myModal');
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName('close')[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+         // Datos de ejemplo de los productos
+         const kidsShirts = [
+            { name: "Camisa Niño 1", price: 20, image: "camisah10.jpg" },
+            { name: "Camisa Niño 2", price: 22, image: "camisah8.jpg" },
+            { name: "Camisa Niño 3", price: 19, image: "camisah5.jpg" },
+            { name: "Camisa Niño 4", price: 18, image: "camisah7.jpg" },
+            { name: "Camisa Niño 5", price: 21, image: "camisah4.jpg" },
+            { name: "Camisa Niño 6", price: 20, image: "camisah3.jpg" },
+            { name: "Camisa Niño 7", price: 23, image: "camisah1.jpg" },
+            { name: "Camisa Niño 8", price: 25, image: "camisah9.jpg" },
+            { name: "Camisa Niño 9", price: 24, image: "camisah6.jpg" },
+            { name: "Camisa Niño 10", price: 26, image: "camisah2.jpg" }
+        ];
+       
+        const kidsPants = [
+            { name: "Pantalón Niño 1", price: 25, image: "hombrep10.jpg" },
+            { name: "Pantalón Niño 2", price: 28, image: "hombrep3.jpg" },
+            { name: "Pantalón Niño 3", price: 26, image: "hombrep1.jpg" },
+            { name: "Pantalón Niño 4", price: 27, image: "hombrep4.jpg" },
+            { name: "Pantalón Niño 5", price: 29, image: "hombrep6.jpg" },
+            { name: "Pantalón Niño 6", price: 30, image: "hombrep8.jpg" },
+            { name: "Pantalón Niño 7", price: 32, image: "hombrep2.jpg" },
+            { name: "Pantalón Niño 8", price: 33, image: "hombrep5.jpg" },
+            { name: "Pantalón Niño 9", price: 31, image: "hombrep7.jpg" },
+            { name: "Pantalón Niño 10", price: 34, image: "hombrep9.jpg" }
+        ];
+        const kidsShoes = [
+            { name: "Zapato Niño 1", price: 30, image: "hombre1.jpg" },
+            { name: "Zapato Niño 2", price: 33, image: "hombre2.jpg" },
+            { name: "Zapato Niño 3", price: 31, image: "hombre3.jpg" },
+            { name: "Zapato Niño 4", price: 35, image: "hombre4.jpg" },
+            { name: "Zapato Niño 5", price: 29, image: "hombre5.jpg" },
+            { name: "Zapato Niño 6", price: 32, image: "hombre6.jpg" },
+            { name: "Zapato Niño 7", price: 34, image: "hombre7.jpg" },
+            { name: "Zapato Niño 8", price: 36, image: "hombre8.jpg" },
+            { name: "Zapato Niño 9", price: 28, image: "hombre9.jpg" },
+            { name: "Zapato Niño 10", price: 37, image: "hombre10.jpg" }
+        ];
+
+        
+           
+
+        const girlsBlouses = [
+            { name: "Blusa Niña 1", price: 15, image: "blusa1.jpg" },
+            { name: "Blusa Niña 2", price: 18, image: "blusa2.jpg" },
+            { name: "Blusa Niña 3", price: 17, image: "blusa3.jpg" },
+            { name: "Blusa Niña 4", price: 16, image: "blusa4.jpg" },
+            { name: "Blusa Niña 5", price: 19, image: "blusa5.jpg" },
+            { name: "Blusa Niña 6", price: 14, image: "blusa6.jpg" },
+            { name: "Blusa Niña 7", price: 13, image: "blusa7.jpg" },
+            { name: "Blusa Niña 8", price: 20, image: "blusa8.jpg" },
+            { name: "Blusa Niña 9", price: 21, image: "blusa9.jpg" },
+            { name: "Blusa Niña 10", price: 22, image: "blusa10.jpg" }
+        ];
+
+        const girlsPants = [
+            { name: "Pantalón Niña 1", price: 25, image: "nina1.jpg" },
+            { name: "Pantalón Niña 2", price: 28, image: "nina2.jpg" },
+            { name: "Pantalón Niña 3", price: 27, image: "nina3.jpg" },
+            { name: "Pantalón Niña 4", price: 24, image: "nina4.jpg" },
+            { name: "Pantalón Niña 5", price: 26, image: "nina5.jpg" },
+            { name: "Pantalón Niña 6", price: 22, image: "nina6.jpg" },
+            { name: "Pantalón Niña 7", price: 23, image: "nina7.jpg" },
+            { name: "Pantalón Niña 8", price: 29, image: "nina8.jpg" },
+            { name: "Pantalón Niña 9", price: 21, image: "nina9.jpg" },
+            { name: "Pantalón Niña 10", price: 30, image: "nina10.jpg" }
+        ];
+
+        const girlsShoes = [
+            { name: "Zapato Niña 1", price: 30, image: "zapa1.jpg" },
+            { name: "Zapato Niña 2", price: 33, image: "zapa2.jpg" },
+            { name: "Zapato Niña 3", price: 31, image: "zapa3.jpg" },
+            { name: "Zapato Niña 4", price: 35, image: "zapa4.jpg" },
+            { name: "Zapato Niña 5", price: 29, image: "zapa5.jpg" },
+            { name: "Zapato Niña 6", price: 32, image: "zapa6.jpg" },
+            { name: "Zapato Niña 7", price: 34, image: "zapa7.jpg" },
+            { name: "Zapato Niña 8", price: 36, image: "zapa8.jpg" },
+            { name: "Zapato Niña 9", price: 28, image: "zapa9.jpg" },
+            { name: "Zapato Niña 10", price: 37, image: "zapa10.jpg" }
+        ];
+
+        const mensShirts = [
+            { name: "Camisa Hombre 1", price: 20, image: "camisah1.jpg" },
+            { name: "Camisa Hombre 2", price: 22, image: "camisah2.jpg" },
+            { name: "Camisa Hombre 3", price: 18, image: "camisah3.jpg" },
+            { name: "Camisa Hombre 4", price: 24, image: "camisah4.jpg" },
+            { name: "Camisa Hombre 5", price: 19, image: "camisah5.jpg" },
+            { name: "Camisa Hombre 6", price: 21, image: "camisah6.jpg" },
+            { name: "Camisa Hombre 7", price: 23, image: "camisah7.jpg" },
+            { name: "Camisa Hombre 8", price: 25, image: "camisah8.jpg" },
+            { name: "Camisa Hombre 9", price: 17, image: "camisah9.jpg" },
+            { name: "Camisa Hombre 10", price: 26, image: "camisah10.jpg" }
+        ];
+
+        
+
+        const mensPants = [
+            { name: "Pantalón Hombre 1", price: 25, image: "hombrep1.jpg" },
+            { name: "Pantalón Hombre 2", price: 28, image: "hombrep2.jpg" },
+            { name: "Pantalón Hombre 3", price: 27, image: "hombrep3.jpg" },
+            { name: "Pantalón Hombre 4", price: 24, image: "hombrep4.jpg" },
+            { name: "Pantalón Hombre 5", price: 26, image: "hombrep5.jpg" },
+            { name: "Pantalón Hombre 6", price: 22, image: "hombrep6.jpg" },
+            { name: "Pantalón Hombre 7", price: 23, image: "hombrep7.jpg" },
+            { name: "Pantalón Hombre 8", price: 29, image: "hombrep8.jpg" },
+            { name: "Pantalón Hombre 9", price: 21, image: "hombrep9.jpg" },
+            { name: "Pantalón Hombre 10", price: 30, image: "hombrep10.jpg" }
+        ];
+
+        const mensShoes = [
+            { name: "Zapato Hombre 1", price: 30, image: "hombre10.jpg" },
+            { name: "Zapato Hombre 2", price: 33, image: "hombre5.jpg" },
+            { name: "Zapato Hombre 3", price: 31, image: "hombre3.jpg" },
+            { name: "Zapato Hombre 4", price: 35, image: "hombre2.jpg" },
+            { name: "Zapato Hombre 5", price: 29, image: "hombre8.jpg" },
+            { name: "Zapato Hombre 6", price: 32, image: "hombre6.jpg" },
+            { name: "Zapato Hombre 7", price: 34, image: "hombre7.jpg" },
+            { name: "Zapato Hombre 8", price: 36, image: "hombre4.jpg" },
+            { name: "Zapato Hombre 9", price: 28, image: "hombre1.jpg" },
+            { name: "Zapato Hombre 10", price: 37, image: "hombre9.jpg" }
+        ];
+
+
+        const womensBlouses = [
+            { name: "Blusa Mujer 1", price: 15, image: "blusa2.jpg" },
+            { name: "Blusa Mujer 2", price: 18, image: "blusa8.jpg" },
+            { name: "Blusa Mujer 3", price: 17, image: "blusa1.jpg" },
+            { name: "Blusa Mujer 4", price: 16, image: "blusa5.jpg" },
+            { name: "Blusa Mujer 5", price: 19, image: "blusa7.jpg" },
+            { name: "Blusa Mujer 6", price: 14, image: "blusa6.jpg" },
+            { name: "Blusa Mujer 7", price: 13, image: "blusa9.jpg" },
+            { name: "Blusa Mujer 8", price: 20, image: "blusa3.jpg" },
+            { name: "Blusa Mujer 9", price: 21, image: "blusa4.jpg" },
+            { name: "Blusa Mujer 10", price: 22, image: "blusa10.jpg" }
+        ];
+
+        const womensPants = [
+            { name: "Pantalón Mujer 1", price: 25, image: "pam1.jpg" },
+            { name: "Pantalón Mujer 2", price: 28, image: "pam2.jpg" },
+            { name: "Pantalón Mujer 3", price: 27, image: "pam3.jpg" },
+            { name: "Pantalón Mujer 4", price: 24, image: "pam4.jpg" },
+            { name: "Pantalón Mujer 5", price: 26, image: "pam5.jpg" },
+            { name: "Pantalón Mujer 6", price: 22, image: "pam6.jpg" },
+            { name: "Pantalón Mujer 7", price: 23, image: "pam7.jpg" },
+            { name: "Pantalón Mujer 8", price: 29, image: "pam8.jpg" },
+            { name: "Pantalón Mujer 9", price: 21, image: "pam9.jpg" },
+            { name: "Pantalón Mujer 10", price: 30, image: "pam10.jpg" }
+        ];
+
+        const womensShoes = [
+            { name: "Zapato Mujer 1", price: 30, image: "zapa10.jpg" },
+            { name: "Zapato Mujer 2", price: 33, image: "zapa2.jpg" },
+            { name: "Zapato Mujer 3", price: 31, image: "zapa4.jpg" },
+            { name: "Zapato Mujer 4", price: 35, image: "zapa9.jpg" },
+            { name: "Zapato Mujer 5", price: 29, image: "zapa5.jpg" },
+            { name: "Zapato Mujer 6", price: 32, image: "zapa7.jpg" },
+            { name: "Zapato Mujer 7", price: 34, image: "zapa8.jpg" },
+            { name: "Zapato Mujer 8", price: 36, image: "zapa6.jpg" },
+            { name: "Zapato Mujer 9", price: 28, image: "zapa1.jpg" },
+            { name: "Zapato Mujer 10", price: 37, image: "zapa3.jpg" }
+        ];
+
+
+        function backToMenu() {
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = ''; // Limpiar el contenido anterior
+        }
+    </script>
+</body>
+</html>
